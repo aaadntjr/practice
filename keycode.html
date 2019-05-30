@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .key-title {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      font-size: 5rem;
+      text-align: center;
+      color: #fff;
+      transform: translate(-50%,0);
+      text-transform: uppercase;
+    }
+    .key-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 80vw;
+      height: 60vh;
+      margin: auto;
+      margin-top: 20vh;
+      border: 5px solid #000;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .key-box {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .key-item {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px;
+      color: #fff;
+      background: rgba(112, 112, 112, 0.5);
+      text-align: center;
+      border: 4px solid transparent;
+      transition: 0.07s;
+    }
+
+    .key-item.active {
+      border: 4px solid #ffe000;
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.2);
+    }
+    .not-click {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    iframe {
+      width: 100%;
+      height: 100vh;
+      min-height: 100vh;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -5;
+      /* opacity: .7; */
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="key-title">d</h1>
+  <div class="key-container">
+    <div class="key-box">
+      <div class="key-item" data-key="81">Q</div>
+      <div class="key-item" data-key="87">W</div>
+      <div class="key-item" data-key="69">E</div>
+      <div class="key-item" data-key="82">R</div>
+      <div class="key-item" data-key="84">T</div>
+      <div class="key-item" data-key="89">Y</div>
+      <div class="key-item" data-key="85">U</div>
+      <div class="key-item" data-key="73">I</div>
+      <div class="key-item" data-key="79">O</div>
+      <div class="key-item" data-key="80">P</div>
+    </div>
+    <div class="key-box">
+      <div class="key-item" data-key="65">A</div>
+      <div class="key-item" data-key="83">S</div>
+      <div class="key-item" data-key="68">D</div>
+      <div class="key-item" data-key="70">F</div>
+      <div class="key-item" data-key="71">G</div>
+      <div class="key-item" data-key="72">H</div>
+      <div class="key-item" data-key="74">J</div>
+      <div class="key-item" data-key="75">K</div>
+      <div class="key-item" data-key="76">L</div>
+    </div>
+    <div class="key-box">
+      <div class="key-item" data-key="90">Z</div>
+      <div class="key-item" data-key="88">X</div>
+      <div class="key-item" data-key="67">C</div>
+      <div class="key-item" data-key="86">V</div>
+      <div class="key-item" data-key="66">B</div>
+      <div class="key-item" data-key="78">N</div>
+      <div class="key-item" data-key="77">M</div>
+      <div class="key-item" data-key="188">,</div>
+      <div class="key-item" data-key="190">.</div>
+    </div>
+  </div>
+  <div class="not-click"></div>
+  <iframe src="https://player.vimeo.com/video/334467817?autoplay=1&loop=1&color=efca00&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay;" allowfullscreen></iframe>  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <script>
+    const keyItem = document.querySelectorAll('.key-item');
+    const keyTitle = document.querySelector('.key-title');
+
+    window.addEventListener('keydown', function (e) {
+      for (let i = 0; i < keyItem.length; i++) {
+        if (e.keyCode == keyItem[i].getAttribute('data-key')) {
+          keyItem[i].classList.add('active');
+          keyTitle.innerHTML = e.key
+        }
+        keyItem[i].addEventListener('transitionend', function () {
+          this.classList.remove('active');
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
